@@ -1,8 +1,9 @@
 package ru.academit.yugay.range;
 
+/**
+ * Created by yugay on 04/07/2018.
+ */
 public class Range {
-    double epsilon = 1.0e-10;
-
     private double from;
     private double to;
 
