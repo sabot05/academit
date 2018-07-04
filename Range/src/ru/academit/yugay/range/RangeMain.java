@@ -1,7 +1,12 @@
-package ru.academit.yugay.range;
+package ru.academit.yugay.rangemain;
+
+import ru.academit.yugay.range.Range;
 
 import java.util.Scanner;
 
+/**
+ * Created by yugay on 04/07/2018.
+ */
 public class RangeMain {
     public static void main(String[] args) {
         Range range = new Range(2.5, 9.8);
@@ -18,5 +23,8 @@ public class RangeMain {
         } else {
             System.out.println("Значение не входит в диапазон от 2 до 10.");
         }
+
+        System.out.println("Длина интервала равна: " + range.getLength());
+
     }
 }
