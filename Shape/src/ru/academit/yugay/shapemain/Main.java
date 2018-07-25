@@ -1,4 +1,4 @@
-package shapemain;
+package ru.academit.yugay.shapemain;
 
 import ru.academit.yugay.shape.Square;
 
