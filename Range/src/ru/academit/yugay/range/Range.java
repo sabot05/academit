@@ -34,46 +34,21 @@ public class Range {
 
     public boolean isInside(double number) {
         return (number >= this.from) && (number <= this.to);
-
     }
 
-    public static Range getCrossRange(Range range1, Range range2) {
-        double crossFrom;
-        double crossTo;
-
-        if (range1.getFrom() > range2.getFrom()) {
-            crossFrom = range1.getFrom();
-        } else {
-            crossFrom = range2.getFrom();
-        }
-
-        if (range1.getTo() > range2.getTo()) {
-            crossTo = range2.getTo();
-        } else {
-            crossTo = range1.getTo();
-        }
-
-        if (crossFrom < crossTo) {
-            Range crossRange = new Range(crossFrom, crossTo);
-            return crossRange;
+    public Range getCrossRange(Range range2) {
+        if (from < range2.to && to > range2.from) {
+            return new Range(Math.max(from, range2.from), Math.min(range2.to, to));
         }
         return null;
     }
 
-    public static Range[] getUnion(Range range1, Range range2) {
-        double from;
-        double to;
+    public Range[] getUnion(Range range2) {
         Range[] unionRange = new Range[2];
-        if (range1.getFrom() > range2.getTo() || range2.getFrom() > range1.getTo()) {
-            unionRange[0] = range1;
-            unionRange[1] = range2;
+        if (from <= range2.to && to >= range2.from) {
+            return new Range[]{new Range(Math.min(from, range2.from), Math.max(to, range2.to))};
         } else {
-            from = Math.min(range1.getFrom(), range2.getFrom());
-            to = Math.max(range1.getTo(), range2.getTo());
-            unionRange[0] = new Range(from, to);
-            unionRange[1] = null;
+            return new Range[]{new Range(from, to), new Range(range2.from, range2.to)};
         }
-        return unionRange;
     }
-
-    }
+}
