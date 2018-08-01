@@ -44,11 +44,22 @@ public class Range {
     }
 
     public Range[] getUnion(Range range2) {
-        Range[] unionRange = new Range[2];
         if (from <= range2.to && to >= range2.from) {
             return new Range[]{new Range(Math.min(from, range2.from), Math.max(to, range2.to))};
         } else {
             return new Range[]{new Range(from, to), new Range(range2.from, range2.to)};
+        }
+    }
+
+    public Range[] getDifference(Range range2) {
+        if (from < range2.from && to <= range2.to) {
+            return new Range[]{new Range(from, Math.min(to, range2.from))};
+        } else if (from >= range2.from && to > range2.to) {
+            return new Range[]{new Range(Math.max(from, range2.to), to)};
+        } else if (from < range2.from && to > range2.to) {
+            return new Range[]{new Range(from, range2.from), new Range(range2.to, to)};
+        } else {
+            return new Range[]{};
         }
     }
 }

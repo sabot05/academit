@@ -49,5 +49,15 @@ public class RangeMain {
             }
             System.out.printf("от %.2f  до %.2f", i.getFrom(), i.getTo());
         }
+        System.out.println();
+
+        Range[] differenceRange = range1.getDifference(range2);
+        System.out.println("Разность двух интревалов: ");
+        for (Range i : differenceRange) {
+            if (i == null) {
+                break;
+            }
+            System.out.printf("%.2f %.2f%n", i.getFrom(), i.getTo());
+        }
     }
 }
